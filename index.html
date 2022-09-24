@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    .content{
+      height: 400px;
+      width: 750px;
+      overflow: hidden;
+      position: relative;
+    }
+    .content .images{
+      height: 100%;
+      width: 100%;
+    }
+    .images img{
+      height: 100%;
+      width: 100%;
+    }
+    .btmSliders{
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .btmSliders span{
+      height: 15px;
+      width: 50px;
+      border:2px solid white;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+    .btmSliders span:hover{
+      background: white;
+    }
+    .content .slideLeft{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255,0.1);
+      border: 2px solid white;
+      cursor: pointer;
+
+    }
+    .content .slideLeft:hover{
+      background-color: rgba(255, 255, 255,0.2);
+    }
+    .slideLeft span{
+      font-size: 35px;
+      color:white;
+      line-height: 41px;
+      
+    }
+    .content .slideRight{
+      right: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255,0.1);
+      border: 2px solid white;
+      cursor: pointer;
+
+    }
+    .content .slideRight:hover{
+      background-color: rgba(255, 255, 255,0.2);
+    }
+    .slideRight span{
+      font-size: 35px;
+      color:white;
+      line-height: 41px;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+
+    <div class="images">
+      <img src="assets/img/event-01.jpg" alt="">
+      <img src="assets/img/event-02.jpg" alt="">
+      <img src="assets/img/event-03.jpg" alt="">
+      <img src="assets/img/event-04.jpg" alt="">
+      <img src="assets/img/event-05.jpg" alt="">
+    </div>
+
+    <div onclick="side_slide(-1) "class="slideLeft">
+      <span class="fas fa-angle-left"></span>
+    </div>
+
+    <div onclick="side_slide(1)" class="slideRight">
+      <span class="fas fa-angle-right"></span> 
+    </div>
+
+    <div class="btmSliders">
+      <span onclick="btm_slide(1)"></span>
+      <span onclick="btm_slide(2)"></span>
+      <span onclick="btm_slide(3)"></span>
+      <span onclick="btm_slide(4)"></span>
+      <span onclick="btm_slide(5)"></span>
+    </div>
+
+    <script>
+      var indexValue = 1;
+      showImg(indexValue);
+      function btm_slide(e){showImg(indexValue = e);}
+      function side_slide(e){showImg(indexValue += e);}
+      function showImg(e){
+        var i;
+        const img =document.querySelectorAll('img');
+        const sliders =document.querySelectorAll('.btm-sliders span');
+        if( e > img.length){
+          indexValue = 1;
+
+        }
+        if(e < 1){
+          indexValue = img.length
+        }
+        for(i = 0; i < img.length; i++){
+          img[i].style.display = "none";
+        }
+        img[indexValue-1].style.display = "block";
+      }
+    </script>
+
+
+  </div>
+  
+</body>
+</html>
